@@ -1,0 +1,31 @@
+A new study created in memory with name: no-name-1db853a5-55ce-4e02-85cd-4e6185a7c3f3
+Trial 0 failed with parameters: {'window_influence': 0.386148028045477, 'penalty_k': 0.18953462473524754, 'scale_lr': 0.4328846220554007} because of the following error: KeyboardInterrupt().
+Traceback (most recent call last):
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/optuna/study/_optimize.py", line 200, in _run_trial
+    value_or_values = func(trial)
+  File "../../tools/tune.py", line 269, in objective
+    outputs = tracker.track(img)
+  File "../../tools/tune.py", line 125, in track
+    outputs = self.model.track(x_crop)
+  File "/home/n26092289/multi_task/siamban-master/siamban/models/model_builder.py", line 176, in track
+    xf = self.backbone(x)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/n26092289/multi_task/siamban-master/siamban/models/backbone/resnet_atrous.py", line 194, in forward
+    p4 = self.layer4(p3)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/n26092289/multi_task/siamban-master/siamban/models/backbone/resnet_atrous.py", line 97, in forward
+    out = self.bn2(out)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/modules/batchnorm.py", line 179, in forward
+    self.eps,
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/torch/nn/functional.py", line 2422, in batch_norm
+    input, weight, bias, running_mean, running_var, training, momentum, eps, torch.backends.cudnn.enabled
+KeyboardInterrupt
+Trial 0 failed with value None.

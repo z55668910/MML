@@ -1,0 +1,15 @@
+A new study created in memory with name: no-name-bb051db1-c551-40d7-8981-ff694e9c2059
+checkpoint_e35 window_influence: 0.62068002251713605, penalty_k: 0.57962620189155389, scale_lr: 0.27316319630056063, EAO: 0.227
+Trial 0 finished with value: 0.22669667573754426 and parameters: {'window_influence': 0.620680022517136, 'penalty_k': 0.5796262018915539, 'scale_lr': 0.27316319630056063}. Best is trial 0 with value: 0.22669667573754426.
+Trial 1 failed with parameters: {'window_influence': 0.14211627086698833, 'penalty_k': 0.18364484827393188, 'scale_lr': 0.25524478954413754} because of the following error: KeyboardInterrupt().
+Traceback (most recent call last):
+  File "/home/n26092289/anaconda3/envs/my_siamban/lib/python3.7/site-packages/optuna/study/_optimize.py", line 200, in _run_trial
+    value_or_values = func(trial)
+  File "../../tools/tune.py", line 269, in objective
+    outputs = tracker.track(img)
+  File "../../tools/tune.py", line 123, in track
+    round(s_x), self.channel_average)
+  File "/home/n26092289/multi_task/siamban-master/siamban/tracker/base_tracker.py", line 94, in get_subwindow
+    im_patch = im_patch.cuda()
+KeyboardInterrupt
+Trial 1 failed with value None.

@@ -1,0 +1,15 @@
+A new study created in memory with name: no-name-28ced6d4-bf05-4f33-877a-e3a0ae21edf8
+checkpoint_e20 window_influence: 0.15753354517142337, penalty_k: 0.58069587276362777, scale_lr: 0.23384407691504078, EAO: 0.214
+Trial 0 finished with value: 0.21409771803056218 and parameters: {'window_influence': 0.15753354517142337, 'penalty_k': 0.5806958727636278, 'scale_lr': 0.23384407691504078}. Best is trial 0 with value: 0.21409771803056218.
+Trial 1 failed with parameters: {'window_influence': 0.5074473374242582, 'penalty_k': 0.5216356405740136, 'scale_lr': 0.33026254516990733} because of the following error: KeyboardInterrupt().
+Traceback (most recent call last):
+  File "/home/phd/n28111063/anaconda3/envs/siamban/lib/python3.8/site-packages/optuna/study/_optimize.py", line 200, in _run_trial
+    value_or_values = func(trial)
+  File "../../tools/tune.py", line 271, in objective
+    outputs = tracker.track(img)
+  File "../../tools/tune.py", line 129, in track
+    score = self._convert_score(outputs['cls'])
+  File "../../tools/tune.py", line 77, in _convert_score
+    score = score.softmax(1).detach()[:, 1].cpu().numpy()
+KeyboardInterrupt
+Trial 1 failed with value None.

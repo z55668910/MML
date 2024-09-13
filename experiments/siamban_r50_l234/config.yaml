@@ -1,0 +1,188 @@
+META_ARC: "siamban_r50_l234"
+
+BACKBONE:
+    TYPE: "resnet50"
+    KWARGS:
+        used_layers: [2, 3, 4]
+    PRETRAINED: 'pretrained_models/resnet50.model'
+    TRAIN_LAYERS: ['layer2', 'layer3', 'layer4']
+    # TRAIN_EPOCH: 10
+    TRAIN_EPOCH: 1 # original 20
+    LAYERS_LR: 0.1
+
+ADJUST:
+    ADJUST: True
+    TYPE: "AdjustAllLayer"
+    KWARGS:
+        in_channels: [512, 1024, 2048]
+        out_channels: [256, 256, 256]
+
+BAN:
+    BAN: True
+    TYPE: 'MultiBAN'
+    KWARGS:
+        in_channels: [256, 256, 256]
+        cls_out_channels: 2  # if use sigmoid cls, cls_out_channel = 1 else 2
+        weighted: True
+
+########## 我加的程式碼 ########## 
+MASK:
+    MASK: True
+    TYPE: 'MaskCorr'
+    KWARGS:
+        in_channels: [256, 256, 256]
+        cls_out_channels: 2  # if use sigmoid cls, cls_out_channel = 1 else 2
+        weighted: True
+
+########## 我加的程式碼 ########## 
+
+POINT:
+    STRIDE: 8
+
+TRACK:
+    TYPE: 'SiamBANTracker'
+
+    # WINDOW_INFLUENCE: 0.4632532824922313  # VOT2018
+    # PENALTY_K: 0.08513642556896711  # VOT2018
+    # LR: 0.44418184746462425  # VOT2018
+
+    # WINDOW_INFLUENCE: 0.334450048565355  # VOT2019
+    # PENALTY_K: 0.0012159181005195463  # VOT2019
+    # LR: 0.46386814967815493  # VOT2019
+
+    # WINDOW_INFLUENCE: 0.3850733326567302  # OTB100
+    # PENALTY_K: 0.020530504470126613  # OTB100
+    # LR: 0.4730770315643308  # OTB100
+
+
+
+    WINDOW_INFLUENCE: 0.47341808934917295 # my revise (salient losses of backbone) for VOT2018 /try/snapshot/checkpoint_e23.pth 
+    PENALTY_K: 0.08667660852501566  # my revise (salient losses of backbone) for VOT2018 /try/snapshot/checkpoint_e23.pth 
+    LR: 0.46987819148671589  # my revise (salient losses of backbone) for VOT2018 /try/snapshot/checkpoint_e23.pth 
+
+
+
+    # # WINDOW_INFLUENCE: 0.47341808934917295 # my revise (salient losses of backbone) for VOT2018 /final_check_salient_loss/snapshot/checkpoint_e23.pth 
+    # # PENALTY_K: 0.08667660852501566  # my revise (salient losses of backbone) for VOT2018 /final_check_salient_loss/snapshot/checkpoint_e23.pth 
+    # # LR: 0.46987819148671589  # my revise (salient losses of backbone) for VOT2018 /final_check_salient_loss/snapshot/checkpoint_e23.pth 
+
+
+
+    # # WINDOW_INFLUENCE: 0.32048539871350651 # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e30.pth
+    # # PENALTY_K: 0.09682606328265334  # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e30.pth
+    # # LR: 0.50281215454284633  # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e30.pth
+
+    # WINDOW_INFLUENCE: 0.33855842846801809 # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e34.pth
+    # PENALTY_K: 0.23066427162284150  # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e34.pth
+    # LR: 0.51298803912104363  # my revise (salient losses of backbone) for VOT2019 /final_check_salient_loss/snapshot/checkpoint_e34.pth
+
+    # WINDOW_INFLUENCE: 0.50969852060151311  # (base_multi_task) for OTB100 /final_base_multitask/snapshot/checkpoint_e12.pth
+    # PENALTY_K: 0.11884416662773370  # (base_multi_task) for OTB100 /final_base_multitask/snapshot/checkpoint_e12.pth
+    # LR: 0.14044239892835961  # (base_multi_task) for OTB100 /final_base_multitask/snapshot/checkpoint_e12.pth
+
+    # WINDOW_INFLUENCE: 0.45635420513307956  # my revise (salient losses of backbone) for OTB100 /final_check_salient_loss/snapshot/checkpoint_e31.pth
+    # PENALTY_K: 0.24158194056203530  # my revise (salient losses of backbone) for OTB100 /final_check_salient_loss/snapshot/checkpoint_e31.pth
+    # LR: 0.17688273995615278  # my revise (salient losses of backbone) for OTB100 /final_check_salient_loss/snapshot/checkpoint_e31.pth
+
+
+
+
+
+    # WINDOW_INFLUENCE: 0.43185078149641393  # my revise (salient losses of backbone) for VOT2019 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e32.pth
+    # PENALTY_K: 0.16388908178755718  # my revise (salient losses of backbone) for VOT2019 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e32.pth
+    # LR: 0.11143263297687162  # my revise (salient losses of backbone) for VOT2019 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e32.pth
+
+
+
+
+
+
+    # WINDOW_INFLUENCE: 0.22339258532281242  # my revise (salient losses of backbone) for OTB100 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e26.pth
+    # PENALTY_K: 0.07826454293638768  # my revise (salient losses of backbone) for OTB100 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e26.pth
+    # LR: 0.20975598926408412  # my revise (salient losses of backbone) for OTB100 /home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e26.pth
+
+
+
+
+
+    EXEMPLAR_SIZE: 127
+    INSTANCE_SIZE: 255
+    BASE_SIZE: 8
+    CONTEXT_AMOUNT: 0.5
+
+TRAIN:
+    # EPOCH: 20
+    EPOCH: 40
+    START_EPOCH: 0 # 0 or resume checkpoint
+    # BATCH_SIZE: 28
+    BATCH_SIZE: 56
+    BASE_LR: 0.005
+    CLS_WEIGHT: 1.0
+    LOC_WEIGHT: 1.0
+    RESUME: '' # '' or 'snapshot/checkpoint_e.pth'
+    # RESUME: '/home/n26092289/storage_d/final_base_multitask_salient_loss_3_4/snapshot/checkpoint_e18.pth' # '' or 'snapshot/checkpoint_e.pth'
+    # RESUME: '/home/n26092289/storage_d/temp/snapshot/checkpoint_e1.pth' # '' or 'snapshot/checkpoint_e.pth'
+    # RESUME: '/home/n26092289/storage_d/try/snapshot/checkpoint_e3.pth' # '' or 'snapshot/checkpoint_e.pth'
+    # RESUME: '/home/n26092289/storage_d/olny_multitask/snapshot/checkpoint_e9.pth' # '' or 'snapshot/checkpoint_e.pth'
+
+    # RESUME: '/home/n26092289/storage_d/real_mask_gt_only_multitask/snapshot/checkpoint_e9.pth' # '' or 'snapshot/checkpoint_e.pth'
+    # RESUME: '/home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e15.pth' # '' or 'snapshot/checkpoint_e.pth'
+
+
+
+    # RESUME: /home/n26092289/storage_d/final_try/snapshot/checkpoint_e10.pth
+
+
+    # RESUME: '/home/n26092289/storage_d/real_mask_gt/snapshot/checkpoint_e32.pth' # '' or 'snapshot/checkpoint_e.pth'
+
+
+
+    LR:
+        TYPE: 'log'
+        KWARGS:
+            start_lr: 0.005
+            end_lr: 0.00005
+    LR_WARMUP:
+        TYPE: 'step'
+        EPOCH: 5
+        KWARGS:
+            start_lr: 0.001
+            end_lr: 0.005
+            step: 1
+
+DATASET:
+    NAMES:
+
+    - 'VID'
+
+    # - 'YOUTUBEBB'
+    - 'COCO'
+    - 'DET'
+
+    # - 'GOT10K'
+    # - 'LASOT'
+    ########## 我加的程式碼 ########## 
+    - 'YTB_VOS'
+    ########## 我加的程式碼 ########## 
+
+    # VIDEOS_PER_EPOCH: 1000000
+    ########## 我加的程式碼 ########## 
+    VIDEOS_PER_EPOCH: 600000
+    ########## 我加的程式碼 ########## 
+
+    TEMPLATE:
+        SHIFT: 4
+        SCALE: 0.05
+        BLUR: 0.0
+        FLIP: 0.0
+        COLOR: 1.0
+
+    SEARCH:
+        SHIFT: 64
+        SCALE: 0.18
+        BLUR: 0.2
+        FLIP: 0.0
+        COLOR: 1.0
+
+    NEG: 0.2
+    GRAY: 0.0
